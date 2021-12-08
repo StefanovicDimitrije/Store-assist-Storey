@@ -1,6 +1,7 @@
 package ris;
 
 public abstract class User {
+    private int id;
     private String username;
     private String mail;
     private String phone;
@@ -18,8 +19,17 @@ public abstract class User {
         this.password = password;
         this.logged = true;
     }
+
+    public User(int id, String username, String mail, String phone, String password) {
+        this.id = id;
+        this.username = username;
+        this.mail = mail;
+        this.phone = phone;
+        this.password = password;
+    }
     
-    public User(boolean logged){
+    public User(int id,boolean logged){
+        this.id = id;
         this.logged = logged;
     }
 
@@ -58,6 +68,14 @@ public abstract class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     
     public void logOut(){
         this.logged = false;
@@ -68,7 +86,8 @@ public abstract class User {
         return "User{" + "username=" + username + ", mail=" + mail + ", phone=" + phone + ", password=" + password + ", logged=" + logged + '}';
     }
     
-    public void logIn(String username, String mail, String phone, String password){
+    public void logIn(int id,String username, String mail, String phone, String password){
+        this.id = id;
         this.username = username;
         this.mail = mail;
         this.phone = phone;

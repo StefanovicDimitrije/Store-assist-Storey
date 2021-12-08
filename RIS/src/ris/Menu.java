@@ -16,6 +16,8 @@ public class Menu extends javax.swing.JFrame {
     Connection conn;
     ArrayList<Item> items = new ArrayList<Item>();
     
+    ArrayList<Favorites> favorites = new ArrayList<Favorites>(); // For the sake of testing, the favorites sql implementation is not yet added
+    
     public Menu() { // Write here what to do with the window while being opened
         try{
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
@@ -86,6 +88,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jRegPhone = new javax.swing.JTextField();
         jProfilePagePanel = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Store assist - Storey");
@@ -132,14 +135,14 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(jHomePanelLayout.createSequentialGroup()
                 .addGap(187, 187, 187)
                 .addComponent(jLabel1)
-                .addContainerGap(200, Short.MAX_VALUE))
+                .addContainerGap(199, Short.MAX_VALUE))
         );
         jHomePanelLayout.setVerticalGroup(
             jHomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jHomePanelLayout.createSequentialGroup()
                 .addGap(199, 199, 199)
                 .addComponent(jLabel1)
-                .addContainerGap(429, Short.MAX_VALUE))
+                .addContainerGap(460, Short.MAX_VALUE))
         );
 
         jContentPanel.add(jHomePanel, "homecard");
@@ -173,7 +176,7 @@ public class Menu extends javax.swing.JFrame {
                 .addGroup(jSearchPanel_searchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jSearchTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
                     .addComponent(jSearchButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(95, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jSearchPanel_searchLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jAddItemButton)
@@ -188,7 +191,7 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(jSearchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jSearchButton)
-                .addContainerGap(384, Short.MAX_VALUE))
+                .addContainerGap(415, Short.MAX_VALUE))
         );
 
         jSearchPanel.add(jSearchPanel_search, "searchcard");
@@ -221,7 +224,7 @@ public class Menu extends javax.swing.JFrame {
                 .addGroup(jResultPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jResultPanelLayout.createSequentialGroup()
                         .addComponent(jBackToSearchButton)
-                        .addGap(0, 354, Short.MAX_VALUE))
+                        .addGap(0, 353, Short.MAX_VALUE))
                     .addComponent(jResultScrollPane))
                 .addContainerGap())
         );
@@ -231,7 +234,7 @@ public class Menu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jBackToSearchButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jResultScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 598, Short.MAX_VALUE)
+                .addComponent(jResultScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 629, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -265,7 +268,7 @@ public class Menu extends javax.swing.JFrame {
                         .addComponent(jFavoriteButton))
                     .addGroup(jItemPanelLayout.createSequentialGroup()
                         .addComponent(jItemNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 69, Short.MAX_VALUE)))
+                        .addGap(0, 68, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jItemPanelLayout.setVerticalGroup(
@@ -278,7 +281,7 @@ public class Menu extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jItemNameLabel)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -324,7 +327,7 @@ public class Menu extends javax.swing.JFrame {
                     .addGroup(jAddItemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jAddItemButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jAvaCheckBox, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(177, Short.MAX_VALUE))
+                .addContainerGap(176, Short.MAX_VALUE))
         );
         jAddItemPanelLayout.setVerticalGroup(
             jAddItemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -341,7 +344,7 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(jAvaCheckBox)
                 .addGap(18, 18, 18)
                 .addComponent(jAddItemButton1)
-                .addContainerGap(294, Short.MAX_VALUE))
+                .addContainerGap(325, Short.MAX_VALUE))
         );
 
         jSearchPanel.add(jAddItemPanel, "additemcard");
@@ -374,7 +377,7 @@ public class Menu extends javax.swing.JFrame {
         jLoginPanelLayout.setHorizontalGroup(
             jLoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLoginPanelLayout.createSequentialGroup()
-                .addContainerGap(124, Short.MAX_VALUE)
+                .addContainerGap(123, Short.MAX_VALUE)
                 .addGroup(jLoginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jRegisterLabel, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLoginPanelLayout.createSequentialGroup()
@@ -395,7 +398,7 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(jLoginButton)
                 .addGap(18, 18, 18)
                 .addComponent(jRegisterLabel)
-                .addContainerGap(351, Short.MAX_VALUE))
+                .addContainerGap(382, Short.MAX_VALUE))
         );
 
         jProfilePanel.add(jLoginPanel, "logincard");
@@ -413,6 +416,11 @@ public class Menu extends javax.swing.JFrame {
         jRegPassword.setText("jPasswordField2");
 
         jRegButton.setText("Register");
+        jRegButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRegButtonActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Phone");
 
@@ -426,7 +434,7 @@ public class Menu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jRegisterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jRegUsername)
-                    .addComponent(jRegMail, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
+                    .addComponent(jRegMail, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
                     .addComponent(jRegPassword)
                     .addGroup(jRegisterPanelLayout.createSequentialGroup()
                         .addGroup(jRegisterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -460,20 +468,29 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(jRegPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRegButton)
-                .addContainerGap(317, Short.MAX_VALUE))
+                .addContainerGap(348, Short.MAX_VALUE))
         );
 
         jProfilePanel.add(jRegisterPanel, "registercard");
+
+        jLabel6.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
+        jLabel6.setText("jLabel6");
 
         javax.swing.GroupLayout jProfilePagePanelLayout = new javax.swing.GroupLayout(jProfilePagePanel);
         jProfilePagePanel.setLayout(jProfilePagePanelLayout);
         jProfilePagePanelLayout.setHorizontalGroup(
             jProfilePagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 421, Short.MAX_VALUE)
+            .addGroup(jProfilePagePanelLayout.createSequentialGroup()
+                .addGap(144, 144, 144)
+                .addComponent(jLabel6)
+                .addContainerGap(160, Short.MAX_VALUE))
         );
         jProfilePagePanelLayout.setVerticalGroup(
             jProfilePagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 644, Short.MAX_VALUE)
+            .addGroup(jProfilePagePanelLayout.createSequentialGroup()
+                .addGap(216, 216, 216)
+                .addComponent(jLabel6)
+                .addContainerGap(412, Short.MAX_VALUE))
         );
 
         jProfilePanel.add(jProfilePagePanel, "profilecard");
@@ -566,7 +583,35 @@ public class Menu extends javax.swing.JFrame {
                 @Override
                 public void actionPerformed(ActionEvent ae) {
                     if(user.isLogged()){
-                        System.out.println(items.get(index));
+                        boolean existsitem = false;
+                        boolean exists = false;
+                        
+                        for (int i = 0; i < favorites.size(); i++) {  // This for loop could be enchanced
+                            if (favorites.get(i).getUserId() == user.getId()) {
+                                for (Item item1 : favorites.get(i).getItems()) {
+                                    if (item1.getId() == items.get(index).getId()) {
+                                        showMessageDialog(null, "The item is already favorited");
+                                        existsitem = true;
+                                        break;
+                                    }
+                                    
+                                }
+                            
+                                if(!existsitem){
+                                 favorites.get(i).addItem(items.get(index));
+                                 showMessageDialog(null, "Item successfully favorited");
+                                }
+                                exists = true;
+                                break;    
+                            }
+                        }
+                        if(!exists){
+                            Favorites favorites1 = new Favorites(user.getId());
+                            favorites1.addItem(items.get(index));
+                            favorites.add(favorites1);
+                            showMessageDialog(null, "Item successfully favorited");
+                        }
+                        
                     } else{showMessageDialog(null, "Please log in");}
                 }
             });
@@ -596,16 +641,15 @@ public class Menu extends javax.swing.JFrame {
             if (!rs.isBeforeFirst() ) {    
                 showMessageDialog(null, "Username doesn't exist");
             } else{
-                
+            
+            int id = 0;    
             String username = "";
             String mail = "";
             String password = "";
             String phone = "";
                 
             while(rs.next()) {
-                System.out.print(rs.getObject("ID"));
-                System.out.print(" - " + rs.getObject("username"));
-                System.out.println(" - " + rs.getObject("password"));
+                id = rs.getInt("ID");
                 username = rs.getString("username");
                 mail = rs.getString("mail");
                 phone = rs.getString("phone");
@@ -613,9 +657,9 @@ public class Menu extends javax.swing.JFrame {
             }    
                 
             if (password.equals(pass)){
-                this.user.logIn(username, mail, phone, password);
-                System.out.println(this.user.getUsername());
+                this.user.logIn(id,username, mail, phone, password);
                 showMessageDialog(null, "Logged in successfully!");
+                jLabel6.setText(user.getUsername());
             } else{
                 showMessageDialog(null, "Wrong password");
             }
@@ -674,11 +718,14 @@ public class Menu extends javax.swing.JFrame {
         showMessageDialog(null, "Item uploaded successfully");
         
         Item item = new Item(id1,name,price,desc,ava);
-        System.out.println(item);
         }catch(Exception e){
                 showMessageDialog(null, "Please input the price correctly"); 
             }
     }//GEN-LAST:event_jAddItemButton1ActionPerformed
+
+    private void jRegButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRegButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRegButtonActionPerformed
 
     private void itemDetail(Item item){
         
@@ -748,6 +795,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JButton jLoginButton;
     private javax.swing.JPanel jLoginPanel;
     private javax.swing.JPanel jNavPanel;
