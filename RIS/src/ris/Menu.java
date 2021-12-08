@@ -579,6 +579,23 @@ public class Menu extends javax.swing.JFrame {
                 }
             }
             
+            boolean existsfavorite = false;
+            jFavoriteButton.setText("Favorite");
+            
+            for (int i = 0; i < favorites.size(); i++) { // This for loop could also be enchanced
+                if (favorites.get(i).getUserId() == user.getId()) {
+                    for (Item item1 : favorites.get(i).getItems()) {
+                        if (item1.getId() == items.get(index).getId()) {
+                            existsfavorite = true;
+                            jFavoriteButton.setText("Remove favorite");
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+            
+            if (!existsfavorite) {
             jFavoriteButton.addActionListener(new ActionListener(){
                 @Override
                 public void actionPerformed(ActionEvent ae) {
@@ -599,6 +616,7 @@ public class Menu extends javax.swing.JFrame {
                             
                                 if(!existsitem){
                                  favorites.get(i).addItem(items.get(index));
+                                 jFavoriteButton.setText("Remove favorite");
                                  showMessageDialog(null, "Item successfully favorited");
                                 }
                                 exists = true;
@@ -609,12 +627,14 @@ public class Menu extends javax.swing.JFrame {
                             Favorites favorites1 = new Favorites(user.getId());
                             favorites1.addItem(items.get(index));
                             favorites.add(favorites1);
+                            jFavoriteButton.setText("Remove favorite");
                             showMessageDialog(null, "Item successfully favorited");
                         }
                         
                     } else{showMessageDialog(null, "Please log in");}
                 }
             });
+            }
         }
     }//GEN-LAST:event_jResultListMouseClicked
 
