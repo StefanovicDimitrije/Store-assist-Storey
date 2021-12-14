@@ -12,7 +12,7 @@ import static javax.swing.JOptionPane.showMessageDialog;
 
 public class Menu extends javax.swing.JFrame {
     
-    Registered_user user; //Add value user which will set info about the logged in user (and if he is logged in)
+    User user; //Add value user which will set info about the logged in user (and if he is logged in)
     Connection conn;
     ArrayList<Item> items = new ArrayList<Item>();
     
@@ -87,8 +87,20 @@ public class Menu extends javax.swing.JFrame {
         jRegButton = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jRegPhone = new javax.swing.JTextField();
+        jBackLogButton = new javax.swing.JButton();
         jProfilePagePanel = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
+        jAccLabel = new javax.swing.JLabel();
+        jLogoutButton = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jAccTextArea = new javax.swing.JTextArea();
+        jViewListButton = new javax.swing.JButton();
+        jViewFavButton = new javax.swing.JButton();
+        jShoppingListPanel = new javax.swing.JPanel();
+        jAccLabel1 = new javax.swing.JLabel();
+        jbackListButton = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jShoppingList = new javax.swing.JList<>();
+        jnewListButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Store assist - Storey");
@@ -126,32 +138,43 @@ public class Menu extends javax.swing.JFrame {
 
         jContentPanel.setLayout(new java.awt.CardLayout());
 
-        jLabel1.setText("Home");
+        jLabel1.setFont(new java.awt.Font("sansserif", 2, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Welcome to Storey!");
 
         javax.swing.GroupLayout jHomePanelLayout = new javax.swing.GroupLayout(jHomePanel);
         jHomePanel.setLayout(jHomePanelLayout);
         jHomePanelLayout.setHorizontalGroup(
             jHomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jHomePanelLayout.createSequentialGroup()
-                .addGap(187, 187, 187)
-                .addComponent(jLabel1)
-                .addContainerGap(199, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jHomePanelLayout.setVerticalGroup(
             jHomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jHomePanelLayout.createSequentialGroup()
-                .addGap(199, 199, 199)
-                .addComponent(jLabel1)
-                .addContainerGap(460, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jContentPanel.add(jHomePanel, "homecard");
 
         jSearchPanel.setLayout(new java.awt.CardLayout());
 
+        jSearchTextField.setForeground(java.awt.Color.gray);
         jSearchTextField.setText("Item");
         jSearchTextField.setAlignmentX(1.0F);
         jSearchTextField.setPreferredSize(new java.awt.Dimension(70, 29));
+        jSearchTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jSearchTextFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jSearchTextFieldFocusLost(evt);
+            }
+        });
 
         jSearchButton.setText("Search");
         jSearchButton.addActionListener(new java.awt.event.ActionListener() {
@@ -191,7 +214,7 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(jSearchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jSearchButton)
-                .addContainerGap(415, Short.MAX_VALUE))
+                .addContainerGap(432, Short.MAX_VALUE))
         );
 
         jSearchPanel.add(jSearchPanel_search, "searchcard");
@@ -234,7 +257,7 @@ public class Menu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jBackToSearchButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jResultScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 629, Short.MAX_VALUE)
+                .addComponent(jResultScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 646, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -250,6 +273,7 @@ public class Menu extends javax.swing.JFrame {
         jFavoriteButton.setText("Favorite");
 
         jItemNameLabel.setFont(new java.awt.Font("sansserif", 1, 36)); // NOI18N
+        jItemNameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jItemNameLabel.setText("jLabel2");
 
         jScrollPane1.setViewportView(jItemDetailText);
@@ -261,14 +285,12 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(jItemPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jItemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jItemNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1)
                     .addGroup(jItemPanelLayout.createSequentialGroup()
                         .addComponent(jBackToSearchButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jFavoriteButton))
-                    .addGroup(jItemPanelLayout.createSequentialGroup()
-                        .addComponent(jItemNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 68, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 282, Short.MAX_VALUE)
+                        .addComponent(jFavoriteButton)))
                 .addContainerGap())
         );
         jItemPanelLayout.setVerticalGroup(
@@ -281,7 +303,7 @@ public class Menu extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jItemNameLabel)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -344,7 +366,7 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(jAvaCheckBox)
                 .addGap(18, 18, 18)
                 .addComponent(jAddItemButton1)
-                .addContainerGap(325, Short.MAX_VALUE))
+                .addContainerGap(342, Short.MAX_VALUE))
         );
 
         jSearchPanel.add(jAddItemPanel, "additemcard");
@@ -368,9 +390,27 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        jUsernameField1.setForeground(java.awt.Color.gray);
         jUsernameField1.setText("Username");
+        jUsernameField1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jUsernameField1FocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jUsernameField1FocusLost(evt);
+            }
+        });
 
-        jPasswordField1.setText("password");
+        jPasswordField1.setForeground(java.awt.Color.gray);
+        jPasswordField1.setText("pass");
+        jPasswordField1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jPasswordField1FocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jPasswordField1FocusLost(evt);
+            }
+        });
 
         javax.swing.GroupLayout jLoginPanelLayout = new javax.swing.GroupLayout(jLoginPanel);
         jLoginPanel.setLayout(jLoginPanelLayout);
@@ -398,7 +438,7 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(jLoginButton)
                 .addGap(18, 18, 18)
                 .addComponent(jRegisterLabel)
-                .addContainerGap(382, Short.MAX_VALUE))
+                .addContainerGap(399, Short.MAX_VALUE))
         );
 
         jProfilePanel.add(jLoginPanel, "logincard");
@@ -426,6 +466,13 @@ public class Menu extends javax.swing.JFrame {
 
         jRegPhone.setText("jTextField2");
 
+        jBackLogButton.setText("Back to login");
+        jBackLogButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBackLogButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jRegisterPanelLayout = new javax.swing.GroupLayout(jRegisterPanel);
         jRegisterPanel.setLayout(jRegisterPanelLayout);
         jRegisterPanelLayout.setHorizontalGroup(
@@ -441,10 +488,13 @@ public class Menu extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4)
-                            .addComponent(jRegButton)
                             .addComponent(jLabel5))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jRegPhone))
+                    .addComponent(jRegPhone)
+                    .addGroup(jRegisterPanelLayout.createSequentialGroup()
+                        .addComponent(jRegButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBackLogButton)))
                 .addContainerGap())
         );
         jRegisterPanelLayout.setVerticalGroup(
@@ -467,33 +517,122 @@ public class Menu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRegPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jRegButton)
-                .addContainerGap(348, Short.MAX_VALUE))
+                .addGroup(jRegisterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRegButton)
+                    .addComponent(jBackLogButton))
+                .addContainerGap(365, Short.MAX_VALUE))
         );
 
         jProfilePanel.add(jRegisterPanel, "registercard");
 
-        jLabel6.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
-        jLabel6.setText("jLabel6");
+        jAccLabel.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        jAccLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jAccLabel.setText("jLabel6");
+
+        jLogoutButton.setText("Logout");
+        jLogoutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jLogoutButtonActionPerformed(evt);
+            }
+        });
+
+        jAccTextArea.setColumns(20);
+        jAccTextArea.setRows(5);
+        jScrollPane3.setViewportView(jAccTextArea);
+
+        jViewListButton.setText("View shopping lists");
+        jViewListButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jViewListButtonActionPerformed(evt);
+            }
+        });
+
+        jViewFavButton.setText("View favorites");
 
         javax.swing.GroupLayout jProfilePagePanelLayout = new javax.swing.GroupLayout(jProfilePagePanel);
         jProfilePagePanel.setLayout(jProfilePagePanelLayout);
         jProfilePagePanelLayout.setHorizontalGroup(
             jProfilePagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jProfilePagePanelLayout.createSequentialGroup()
-                .addGap(144, 144, 144)
-                .addComponent(jLabel6)
-                .addContainerGap(160, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(jProfilePagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
+                    .addGroup(jProfilePagePanelLayout.createSequentialGroup()
+                        .addComponent(jAccLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLogoutButton))
+                    .addComponent(jViewListButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jViewFavButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jProfilePagePanelLayout.setVerticalGroup(
             jProfilePagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jProfilePagePanelLayout.createSequentialGroup()
-                .addGap(216, 216, 216)
-                .addComponent(jLabel6)
-                .addContainerGap(412, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(jProfilePagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jAccLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLogoutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jViewFavButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jViewListButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jProfilePanel.add(jProfilePagePanel, "profilecard");
+
+        jAccLabel1.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        jAccLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jAccLabel1.setText("jLabel6");
+
+        jbackListButton.setText("Back");
+        jbackListButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbackListButtonActionPerformed(evt);
+            }
+        });
+
+        jShoppingList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane4.setViewportView(jShoppingList);
+
+        jnewListButton.setText("Add new list");
+
+        javax.swing.GroupLayout jShoppingListPanelLayout = new javax.swing.GroupLayout(jShoppingListPanel);
+        jShoppingListPanel.setLayout(jShoppingListPanelLayout);
+        jShoppingListPanelLayout.setHorizontalGroup(
+            jShoppingListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jShoppingListPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jShoppingListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4)
+                    .addGroup(jShoppingListPanelLayout.createSequentialGroup()
+                        .addComponent(jAccLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbackListButton))
+                    .addComponent(jnewListButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jShoppingListPanelLayout.setVerticalGroup(
+            jShoppingListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jShoppingListPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jShoppingListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jAccLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                    .addComponent(jbackListButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jnewListButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jProfilePanel.add(jShoppingListPanel, "listcard");
 
         jContentPanel.add(jProfilePanel, "profilecard");
 
@@ -579,62 +718,7 @@ public class Menu extends javax.swing.JFrame {
                 }
             }
             
-            boolean existsfavorite = false;
-            jFavoriteButton.setText("Favorite");
-            
-            for (int i = 0; i < favorites.size(); i++) { // This for loop could also be enchanced
-                if (favorites.get(i).getUserId() == user.getId()) {
-                    for (Item item1 : favorites.get(i).getItems()) {
-                        if (item1.getId() == items.get(index).getId()) {
-                            existsfavorite = true;
-                            jFavoriteButton.setText("Remove favorite");
-                            break;
-                        }
-                    }
-                    break;
-                }
-            }
-            
-            if (!existsfavorite) {
-            jFavoriteButton.addActionListener(new ActionListener(){
-                @Override
-                public void actionPerformed(ActionEvent ae) {
-                    if(user.isLogged()){
-                        boolean existsitem = false;
-                        boolean exists = false;
-                        
-                        for (int i = 0; i < favorites.size(); i++) {  // This for loop could be enchanced
-                            if (favorites.get(i).getUserId() == user.getId()) {
-                                for (Item item1 : favorites.get(i).getItems()) {
-                                    if (item1.getId() == items.get(index).getId()) {
-                                        showMessageDialog(null, "The item is already favorited");
-                                        existsitem = true;
-                                        break;
-                                    }
-                                    
-                                }
-                            
-                                if(!existsitem){
-                                 favorites.get(i).addItem(items.get(index));
-                                 jFavoriteButton.setText("Remove favorite");
-                                 showMessageDialog(null, "Item successfully favorited");
-                                }
-                                exists = true;
-                                break;    
-                            }
-                        }
-                        if(!exists){
-                            Favorites favorites1 = new Favorites(user.getId());
-                            favorites1.addItem(items.get(index));
-                            favorites.add(favorites1);
-                            jFavoriteButton.setText("Remove favorite");
-                            showMessageDialog(null, "Item successfully favorited");
-                        }
-                        
-                    } else{showMessageDialog(null, "Please log in");}
-                }
-            });
-            }
+            favoriteButton(item);
         }
     }//GEN-LAST:event_jResultListMouseClicked
 
@@ -679,7 +763,7 @@ public class Menu extends javax.swing.JFrame {
             if (password.equals(pass)){
                 this.user.logIn(id,username, mail, phone, password);
                 showMessageDialog(null, "Logged in successfully!");
-                jLabel6.setText(user.getUsername());
+                displayUser();
             } else{
                 showMessageDialog(null, "Wrong password");
             }
@@ -702,7 +786,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jBackToSearchButton2ActionPerformed
 
     private void jAddItemButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAddItemButton1ActionPerformed
-        try{    // This is to check whether the price has been entered corrctly (in form of a number
+        try{    // This is to check whether the price has been entered corrctly (in form of a number)
             
         String name = jItemNameTextField.getText();
         int price = parseInt(jItemPriceTextField.getText());
@@ -747,12 +831,149 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jRegButtonActionPerformed
 
+    private void jLogoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLogoutButtonActionPerformed
+        
+        user.logOut();
+        jUsernameField1.setText("Username");jUsernameField1.setForeground(Color.GRAY);
+        jPasswordField1.setText("pass");    jPasswordField1.setForeground(Color.GRAY);
+        
+        showMessageDialog(null, "Logged out");
+        
+        CardLayout card = (CardLayout)jProfilePanel.getLayout();
+        card.show(jProfilePanel, "logincard");
+    }//GEN-LAST:event_jLogoutButtonActionPerformed
+
+    private void jUsernameField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jUsernameField1FocusGained
+        if (jUsernameField1.getText().equals("Username")) {
+            jUsernameField1.setText("");
+            jUsernameField1.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_jUsernameField1FocusGained
+
+    private void jUsernameField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jUsernameField1FocusLost
+        if (jUsernameField1.getText().isEmpty()) {
+            jUsernameField1.setForeground(Color.GRAY);
+            jUsernameField1.setText("Username");
+        }
+    }//GEN-LAST:event_jUsernameField1FocusLost
+
+    private void jPasswordField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPasswordField1FocusGained
+        if (jPasswordField1.getText().equals("pass")) {
+            jPasswordField1.setText("");
+            jPasswordField1.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_jPasswordField1FocusGained
+
+    private void jPasswordField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPasswordField1FocusLost
+        if (jPasswordField1.getText().isEmpty()) {
+            jPasswordField1.setForeground(Color.GRAY);
+            jPasswordField1.setText("pass");
+        }
+    }//GEN-LAST:event_jPasswordField1FocusLost
+
+    private void jBackLogButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBackLogButtonActionPerformed
+        CardLayout card = (CardLayout)jProfilePanel.getLayout();
+        card.show(jProfilePanel, "logincard");
+    }//GEN-LAST:event_jBackLogButtonActionPerformed
+
+    private void jbackListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbackListButtonActionPerformed
+        CardLayout card = (CardLayout)jProfilePanel.getLayout();
+        card.show(jProfilePanel, "profilecard");
+    }//GEN-LAST:event_jbackListButtonActionPerformed
+
+    private void jViewListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jViewListButtonActionPerformed
+        CardLayout card = (CardLayout)jProfilePanel.getLayout();
+        card.show(jProfilePanel, "listcard");
+    }//GEN-LAST:event_jViewListButtonActionPerformed
+
+    private void jSearchTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jSearchTextFieldFocusGained
+        if (jSearchTextField.getText().equals("Item")) {
+            jSearchTextField.setText("");
+            jSearchTextField.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_jSearchTextFieldFocusGained
+
+    private void jSearchTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jSearchTextFieldFocusLost
+        if (jSearchTextField.getText().isEmpty()) {
+            jSearchTextField.setForeground(Color.GRAY);
+            jSearchTextField.setText("Item");
+        }
+    }//GEN-LAST:event_jSearchTextFieldFocusLost
+
     private void itemDetail(Item item){
-        
         jItemNameLabel.setText(item.getName());
-        
         jItemDetailText.setText(item.toString());
     }    
+    
+    private void displayUser(){
+        jAccLabel.setText(user.getUsername());
+        jAccLabel1.setText(user.getUsername());
+        jAccTextArea.setText(user.toString());
+    }
+    
+    private void favoriteButton(Item item){
+        boolean favoriteExists = false;
+            
+        if(user.isLogged()){
+            // Search to see if the item is favorited for the current logged in user
+            try{
+                String q = "SELECT * FROM Favorites WHERE id_user = '" + user.getId() + "' AND id_item = '" + item.getId()+"'";
+                Statement st = conn.createStatement();
+                ResultSet rs = st.executeQuery(q);
+                // If the query returned no results, that means that the item is not favorited for the user
+                favoriteExists = rs.isBeforeFirst();
+            }catch(SQLException e){System.out.println("fail"); e.printStackTrace();}
+             catch(Exception e){System.out.println(e);}
+            
+            if (favoriteExists){
+                jFavoriteButton.setText("Remove from favorites");
+                jFavoriteButton.addActionListener(new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent ae) {
+                        // Here would be the code for removing a favorited item from the table
+                        // To be implemented      
+                    }});
+                }else{
+                    jFavoriteButton.setText("Favorite");
+                    jFavoriteButton.addActionListener(new ActionListener(){
+                        @Override
+                        public void actionPerformed(ActionEvent ae) {
+                            
+                            // This whole block of code could be put in a function
+                            int id = 0;
+                            try{
+                                Statement st = conn.createStatement();
+                                ResultSet rs = st.executeQuery("SELECT * FROM Favorites");
+                                while(rs.next()) {
+                                   if(rs.isLast()) {
+                                        id = rs.getInt("ID");
+                                    }
+                                }
+                            }catch(Exception e){System.out.println(e);}
+                            id++; 
+                            // Get the last id from the list and increase the number by one (to insert a new id);
+                            
+                            try {
+                                String q = "INSERT INTO Favorites ([ID],[id_user],[id_item]) VALUES (?,?,?)";
+                                PreparedStatement st = conn.prepareStatement(q);
+                                    st.setInt(1,id);
+                                    st.setInt(2,user.getId());
+                                    st.setInt(3,item.getId());
+                                    st.executeUpdate();
+                            } catch (SQLException ex) {Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);}
+                            showMessageDialog(null, "Item successfully favorited");    
+                            favoriteButton(item);
+                            // Now change it to 'Remove from favorites'
+                            
+                        }});
+                }
+            
+            } else{
+                jFavoriteButton.setText("Favorite");
+                jFavoriteButton.addActionListener(new ActionListener(){
+                    @Override public void actionPerformed(ActionEvent ae) {showMessageDialog(null, "Please log in");favoriteButton(item);}});
+                }  
+    }
     
     /**
      * @param args the command line arguments
@@ -791,10 +1012,14 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jAccLabel;
+    private javax.swing.JLabel jAccLabel1;
+    private javax.swing.JTextArea jAccTextArea;
     private javax.swing.JButton jAddItemButton;
     private javax.swing.JButton jAddItemButton1;
     private javax.swing.JPanel jAddItemPanel;
     private javax.swing.JCheckBox jAvaCheckBox;
+    private javax.swing.JButton jBackLogButton;
     private javax.swing.JButton jBackToSearchButton;
     private javax.swing.JButton jBackToSearchButton1;
     private javax.swing.JButton jBackToSearchButton2;
@@ -815,9 +1040,9 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JButton jLoginButton;
     private javax.swing.JPanel jLoginPanel;
+    private javax.swing.JButton jLogoutButton;
     private javax.swing.JPanel jNavPanel;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JPanel jProfilePagePanel;
@@ -834,10 +1059,18 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JScrollPane jResultScrollPane;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JButton jSearchButton;
     private javax.swing.JPanel jSearchPanel;
     private javax.swing.JPanel jSearchPanel_search;
     private javax.swing.JTextField jSearchTextField;
+    private javax.swing.JList<String> jShoppingList;
+    private javax.swing.JPanel jShoppingListPanel;
     private javax.swing.JTextField jUsernameField1;
+    private javax.swing.JButton jViewFavButton;
+    private javax.swing.JButton jViewListButton;
+    private javax.swing.JButton jbackListButton;
+    private javax.swing.JButton jnewListButton;
     // End of variables declaration//GEN-END:variables
 }
