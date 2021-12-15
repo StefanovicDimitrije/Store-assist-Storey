@@ -16,8 +16,6 @@ public class Menu extends javax.swing.JFrame {
     Connection conn;
     ArrayList<Item> items = new ArrayList<Item>();
     
-    ArrayList<Favorites> favorites = new ArrayList<Favorites>(); // For the sake of testing, the favorites sql implementation is not yet added
-    
     public Menu() { // Write here what to do with the window while being opened
         try{
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
@@ -89,18 +87,25 @@ public class Menu extends javax.swing.JFrame {
         jRegPhone = new javax.swing.JTextField();
         jBackLogButton = new javax.swing.JButton();
         jProfilePagePanel = new javax.swing.JPanel();
-        jAccLabel = new javax.swing.JLabel();
-        jLogoutButton = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jAccTextArea = new javax.swing.JTextArea();
-        jViewListButton = new javax.swing.JButton();
-        jViewFavButton = new javax.swing.JButton();
         jShoppingListPanel = new javax.swing.JPanel();
         jAccLabel1 = new javax.swing.JLabel();
         jbackListButton = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         jShoppingList = new javax.swing.JList<>();
         jnewListButton = new javax.swing.JButton();
+        jViewprofPanel = new javax.swing.JPanel();
+        jLogoutButton = new javax.swing.JButton();
+        jViewFavButton = new javax.swing.JButton();
+        jAccLabel = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jAccTextArea = new javax.swing.JTextArea();
+        jViewListButton = new javax.swing.JButton();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jAccTextArea1 = new javax.swing.JTextArea();
+        jFavoritesPanel = new javax.swing.JPanel();
+        jbackFavButton = new javax.swing.JButton();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jFavoritesList = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Store assist - Storey");
@@ -155,7 +160,7 @@ public class Menu extends javax.swing.JFrame {
             jHomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jHomePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -214,7 +219,7 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(jSearchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jSearchButton)
-                .addContainerGap(432, Short.MAX_VALUE))
+                .addContainerGap(444, Short.MAX_VALUE))
         );
 
         jSearchPanel.add(jSearchPanel_search, "searchcard");
@@ -257,7 +262,7 @@ public class Menu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jBackToSearchButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jResultScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 646, Short.MAX_VALUE)
+                .addComponent(jResultScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -303,7 +308,7 @@ public class Menu extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jItemNameLabel)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -366,7 +371,7 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(jAvaCheckBox)
                 .addGap(18, 18, 18)
                 .addComponent(jAddItemButton1)
-                .addContainerGap(342, Short.MAX_VALUE))
+                .addContainerGap(354, Short.MAX_VALUE))
         );
 
         jSearchPanel.add(jAddItemPanel, "additemcard");
@@ -438,7 +443,7 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(jLoginButton)
                 .addGap(18, 18, 18)
                 .addComponent(jRegisterLabel)
-                .addContainerGap(399, Short.MAX_VALUE))
+                .addContainerGap(411, Short.MAX_VALUE))
         );
 
         jProfilePanel.add(jLoginPanel, "logincard");
@@ -520,68 +525,12 @@ public class Menu extends javax.swing.JFrame {
                 .addGroup(jRegisterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRegButton)
                     .addComponent(jBackLogButton))
-                .addContainerGap(365, Short.MAX_VALUE))
+                .addContainerGap(377, Short.MAX_VALUE))
         );
 
         jProfilePanel.add(jRegisterPanel, "registercard");
 
-        jAccLabel.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
-        jAccLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jAccLabel.setText("jLabel6");
-
-        jLogoutButton.setText("Logout");
-        jLogoutButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jLogoutButtonActionPerformed(evt);
-            }
-        });
-
-        jAccTextArea.setColumns(20);
-        jAccTextArea.setRows(5);
-        jScrollPane3.setViewportView(jAccTextArea);
-
-        jViewListButton.setText("View shopping lists");
-        jViewListButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jViewListButtonActionPerformed(evt);
-            }
-        });
-
-        jViewFavButton.setText("View favorites");
-
-        javax.swing.GroupLayout jProfilePagePanelLayout = new javax.swing.GroupLayout(jProfilePagePanel);
-        jProfilePagePanel.setLayout(jProfilePagePanelLayout);
-        jProfilePagePanelLayout.setHorizontalGroup(
-            jProfilePagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jProfilePagePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jProfilePagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
-                    .addGroup(jProfilePagePanelLayout.createSequentialGroup()
-                        .addComponent(jAccLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLogoutButton))
-                    .addComponent(jViewListButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jViewFavButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jProfilePagePanelLayout.setVerticalGroup(
-            jProfilePagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jProfilePagePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jProfilePagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jAccLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLogoutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jViewFavButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jViewListButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        jProfilePanel.add(jProfilePagePanel, "profilecard");
+        jProfilePagePanel.setLayout(new java.awt.CardLayout());
 
         jAccLabel1.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
         jAccLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -623,7 +572,7 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jShoppingListPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jShoppingListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jAccLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                    .addComponent(jAccLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
                     .addComponent(jbackListButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -632,7 +581,121 @@ public class Menu extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jProfilePanel.add(jShoppingListPanel, "listcard");
+        jProfilePagePanel.add(jShoppingListPanel, "listcard");
+
+        jLogoutButton.setText("Logout");
+        jLogoutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jLogoutButtonActionPerformed(evt);
+            }
+        });
+
+        jViewFavButton.setText("View favorites");
+        jViewFavButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jViewFavButtonActionPerformed(evt);
+            }
+        });
+
+        jAccLabel.setFont(new java.awt.Font("sansserif", 0, 24)); // NOI18N
+        jAccLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jAccLabel.setText("jLabel6");
+
+        jAccTextArea.setColumns(20);
+        jAccTextArea.setRows(5);
+        jScrollPane3.setViewportView(jAccTextArea);
+
+        jViewListButton.setText("View shopping lists");
+        jViewListButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jViewListButtonActionPerformed(evt);
+            }
+        });
+
+        jAccTextArea1.setColumns(20);
+        jAccTextArea1.setRows(5);
+        jScrollPane6.setViewportView(jAccTextArea1);
+
+        javax.swing.GroupLayout jViewprofPanelLayout = new javax.swing.GroupLayout(jViewprofPanel);
+        jViewprofPanel.setLayout(jViewprofPanelLayout);
+        jViewprofPanelLayout.setHorizontalGroup(
+            jViewprofPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jViewprofPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jViewprofPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
+                    .addGroup(jViewprofPanelLayout.createSequentialGroup()
+                        .addComponent(jAccLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLogoutButton))
+                    .addComponent(jViewListButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jViewFavButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jViewprofPanelLayout.setVerticalGroup(
+            jViewprofPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jViewprofPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jViewprofPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jAccLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLogoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jViewFavButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jViewListButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jProfilePagePanel.add(jViewprofPanel, "viewprofcard");
+        jViewprofPanel.getAccessibleContext().setAccessibleName("");
+
+        jbackFavButton.setText("Return");
+        jbackFavButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbackFavButtonActionPerformed(evt);
+            }
+        });
+
+        jFavoritesList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jFavoritesList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jFavoritesListMouseClicked(evt);
+            }
+        });
+        jScrollPane5.setViewportView(jFavoritesList);
+
+        javax.swing.GroupLayout jFavoritesPanelLayout = new javax.swing.GroupLayout(jFavoritesPanel);
+        jFavoritesPanel.setLayout(jFavoritesPanelLayout);
+        jFavoritesPanelLayout.setHorizontalGroup(
+            jFavoritesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jFavoritesPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jFavoritesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jFavoritesPanelLayout.createSequentialGroup()
+                        .addComponent(jbackFavButton)
+                        .addGap(0, 343, Short.MAX_VALUE))
+                    .addComponent(jScrollPane5))
+                .addContainerGap())
+        );
+        jFavoritesPanelLayout.setVerticalGroup(
+            jFavoritesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jFavoritesPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jbackFavButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 652, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jProfilePagePanel.add(jFavoritesPanel, "favoritescard");
+
+        jProfilePanel.add(jProfilePagePanel, "profilecard");
 
         jContentPanel.add(jProfilePanel, "profilecard");
 
@@ -644,11 +707,16 @@ public class Menu extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         CardLayout card = (CardLayout)jContentPanel.getLayout();
         card.show(jContentPanel, "homecard");
+        CardLayout card1 = (CardLayout)jSearchPanel.getLayout();
+        card1.show(jSearchPanel,"searchcard");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         CardLayout card = (CardLayout)jContentPanel.getLayout();
         card.show(jContentPanel, "searchcard");
+        CardLayout card1 = (CardLayout)jSearchPanel.getLayout();
+        card1.show(jSearchPanel, "searchcard");
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -657,7 +725,11 @@ public class Menu extends javax.swing.JFrame {
         
         CardLayout card1 = (CardLayout)jProfilePanel.getLayout();
         
-        if(user.isLogged()){card1.show(jProfilePanel, "profilecard");}else{card1.show(jProfilePanel, "logincard");} 
+        if(user.isLogged()){
+            card1.show(jProfilePanel, "profilecard"); // Set the layout to the profile page
+            CardLayout card2 = (CardLayout)jProfilePagePanel.getLayout(); // If the user is in the favorites or shopping list page redirect to pfpage
+            card2.show(jProfilePagePanel, "viewprofcard");
+        }else{card1.show(jProfilePanel, "logincard");} 
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -680,12 +752,7 @@ public class Menu extends javax.swing.JFrame {
                 items.add(item);
             }
             
-            DefaultListModel listModel = new DefaultListModel();
-            for (int i = 0; i < items.size(); i++)
-            {
-                listModel.addElement(items.get(i).getId() + " - " + items.get(i).getName());
-            }
-            
+            DefaultListModel listModel = defaultListModel(items);
             jResultList.setModel(listModel);
             
             CardLayout card = (CardLayout)jSearchPanel.getLayout();
@@ -718,13 +785,26 @@ public class Menu extends javax.swing.JFrame {
                 }
             }
             
+            ActionListener[] listeners1 = jBackToSearchButton1.getActionListeners();
+            if(listeners1.length != 0){
+                for (ActionListener al:listeners1){
+                    jBackToSearchButton1.removeActionListener(al);
+                }
+            }
+            
+            jBackToSearchButton1.addActionListener(new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent ae) {
+                          CardLayout card = (CardLayout)jSearchPanel.getLayout();
+                          card.show(jSearchPanel, "resultcard");
+                    }});
+            
             favoriteButton(item);
         }
     }//GEN-LAST:event_jResultListMouseClicked
 
     private void jBackToSearchButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBackToSearchButton1ActionPerformed
-        CardLayout card = (CardLayout)jSearchPanel.getLayout();
-        card.show(jSearchPanel, "searchcard");
+        
     }//GEN-LAST:event_jBackToSearchButton1ActionPerformed
 
     private void jRegisterLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRegisterLabelMouseClicked
@@ -877,13 +957,13 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jBackLogButtonActionPerformed
 
     private void jbackListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbackListButtonActionPerformed
-        CardLayout card = (CardLayout)jProfilePanel.getLayout();
-        card.show(jProfilePanel, "profilecard");
+        CardLayout card = (CardLayout)jProfilePagePanel.getLayout();
+        card.show(jProfilePagePanel, "viewprofcard");
     }//GEN-LAST:event_jbackListButtonActionPerformed
 
     private void jViewListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jViewListButtonActionPerformed
-        CardLayout card = (CardLayout)jProfilePanel.getLayout();
-        card.show(jProfilePanel, "listcard");
+        CardLayout card = (CardLayout)jProfilePagePanel.getLayout();
+        card.show(jProfilePagePanel, "listcard");
     }//GEN-LAST:event_jViewListButtonActionPerformed
 
     private void jSearchTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jSearchTextFieldFocusGained
@@ -900,6 +980,60 @@ public class Menu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jSearchTextFieldFocusLost
 
+    private void jViewFavButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jViewFavButtonActionPerformed
+                showFavs();
+                CardLayout card = (CardLayout)jProfilePagePanel.getLayout();
+                card.show(jProfilePagePanel, "favoritescard");
+         
+    }//GEN-LAST:event_jViewFavButtonActionPerformed
+
+    private void jbackFavButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbackFavButtonActionPerformed
+        CardLayout card = (CardLayout)jProfilePagePanel.getLayout();
+        card.show(jProfilePagePanel, "viewprofcard");
+    }//GEN-LAST:event_jbackFavButtonActionPerformed
+
+    private void jFavoritesListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jFavoritesListMouseClicked
+        JList list = (JList)evt.getSource();
+        if(evt.getClickCount() == 2){
+            
+            int index = list.locationToIndex(evt.getPoint());
+            Item item = items.get(index);
+            
+            itemDetail(item);
+            CardLayout card = (CardLayout)jContentPanel.getLayout();
+            card.show(jContentPanel, "searchcard");
+            CardLayout card1 = (CardLayout)jSearchPanel.getLayout();
+            card1.show(jSearchPanel, "itemcard");
+            
+            ActionListener[] listeners = jBackToSearchButton1.getActionListeners();
+            if(listeners.length != 0){
+                for (ActionListener al:listeners){
+                    jBackToSearchButton1.removeActionListener(al);
+                }
+            }
+            
+            jBackToSearchButton1.addActionListener(new ActionListener(){
+                    @Override
+                    public void actionPerformed(ActionEvent ae) {
+                          showFavs();
+                          CardLayout card = (CardLayout)jContentPanel.getLayout();
+                          card.show(jContentPanel, "profilecard");
+                    }});
+            
+            //jBackToSearchButton1.setVisible(false);
+            // Back button invis (za sad)
+            
+            ActionListener[] listeners1 = jFavoriteButton.getActionListeners();
+            if (listeners1.length != 0){
+                for(ActionListener al:listeners1){
+                    jFavoriteButton.removeActionListener( al );
+                }
+            }
+            
+            favoriteButton(item);
+        }
+    }//GEN-LAST:event_jFavoritesListMouseClicked
+
     private void itemDetail(Item item){
         jItemNameLabel.setText(item.getName());
         jItemDetailText.setText(item.toString());
@@ -909,6 +1043,36 @@ public class Menu extends javax.swing.JFrame {
         jAccLabel.setText(user.getUsername());
         jAccLabel1.setText(user.getUsername());
         jAccTextArea.setText(user.toString());
+    }
+    
+    private void showFavs(){
+    try {            
+            String q = "SELECT * FROM Favorites WHERE id_user = '" + user.getId() +"'";
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(q);  // Get the list of favorites for the given user
+            
+            if (!rs.isBeforeFirst() ) {    // If it is empty, whoops
+                showMessageDialog(null, "You have no favorites");
+                jFavoritesList.setModel(new DefaultListModel());
+            } else{ //If it is not, now clear the items global var and fill it with items from the favorites list
+            
+                items.clear();
+                
+                while(rs.next()){
+                    String q1 = "SELECT * FROM Item WHERE ID = '" + rs.getInt("id_item") + "'";
+                    Statement st1 = conn.createStatement();
+                    ResultSet rs1 = st1.executeQuery(q1);
+                    while(rs1.next()){
+                        Item item = new Item(rs1.getInt("ID"),rs1.getString("itemName"),rs1.getInt("price"),rs1.getString("description"),rs1.getBoolean("availability"));
+                        items.add(item);
+                    }
+                }
+                DefaultListModel listModel = defaultListModel(items);
+                jFavoritesList.setModel(listModel);
+            }
+          } 
+        catch(SQLException e){System.out.println("fail"); e.printStackTrace();}
+        catch(Exception e){System.out.println(e);}
     }
     
     private void favoriteButton(Item item){
@@ -930,8 +1094,13 @@ public class Menu extends javax.swing.JFrame {
                 jFavoriteButton.addActionListener(new ActionListener(){
                     @Override
                     public void actionPerformed(ActionEvent ae) {
-                        // Here would be the code for removing a favorited item from the table
-                        // To be implemented      
+                        try{
+                            Statement stmt = conn.createStatement();
+                            String del = "DELETE FROM Favorites WHERE id_user ='"+user.getId()+"' AND id_item = '"+item.getId()+"'";
+                            stmt.executeUpdate(del);
+                            showMessageDialog(null, "Item removed from favorites");
+                            favoriteButton(item);
+                        }catch(SQLException e){System.out.println("fail"); e.printStackTrace();}
                     }});
                 }else{
                     jFavoriteButton.setText("Favorite");
@@ -975,6 +1144,15 @@ public class Menu extends javax.swing.JFrame {
                 }  
     }
     
+    private DefaultListModel defaultListModel (ArrayList<Item> array){
+        DefaultListModel listModel = new DefaultListModel();
+            for (int i = 0; i < array.size(); i++)
+            {
+                listModel.addElement(array.get(i).getId() + " - " + array.get(i).getName());
+            }
+        return listModel;
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -1015,6 +1193,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jAccLabel;
     private javax.swing.JLabel jAccLabel1;
     private javax.swing.JTextArea jAccTextArea;
+    private javax.swing.JTextArea jAccTextArea1;
     private javax.swing.JButton jAddItemButton;
     private javax.swing.JButton jAddItemButton1;
     private javax.swing.JPanel jAddItemPanel;
@@ -1028,6 +1207,8 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JPanel jContentPanel;
     private javax.swing.JButton jFavoriteButton;
+    private javax.swing.JList<String> jFavoritesList;
+    private javax.swing.JPanel jFavoritesPanel;
     private javax.swing.JPanel jHomePanel;
     private javax.swing.JTextArea jItemDescTextArea;
     private javax.swing.JTextPane jItemDetailText;
@@ -1061,6 +1242,8 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JButton jSearchButton;
     private javax.swing.JPanel jSearchPanel;
     private javax.swing.JPanel jSearchPanel_search;
@@ -1070,6 +1253,8 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JTextField jUsernameField1;
     private javax.swing.JButton jViewFavButton;
     private javax.swing.JButton jViewListButton;
+    private javax.swing.JPanel jViewprofPanel;
+    private javax.swing.JButton jbackFavButton;
     private javax.swing.JButton jbackListButton;
     private javax.swing.JButton jnewListButton;
     // End of variables declaration//GEN-END:variables
