@@ -695,13 +695,19 @@
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jListField" max="32767" attributes="0"/>
                                   <Component id="jScrollPane4" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
-                                      <Component id="jAccLabel1" pref="347" max="32767" attributes="0"/>
+                                      <Component id="jAccLabel1" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jbackListButton" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="jnewListButton" alignment="0" max="32767" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jnewListButton" min="-2" pref="200" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jdelListButton" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="jSeparator1" alignment="0" min="-2" pref="408" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -716,9 +722,16 @@
                                   <Component id="jbackListButton" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jScrollPane4" min="-2" pref="571" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jnewListButton" min="-2" pref="49" max="-2" attributes="0"/>
+                              <Component id="jScrollPane4" min="-2" pref="527" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                              <Component id="jSeparator1" min="-2" pref="4" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jListField" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jdelListButton" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
+                                  <Component id="jnewListButton" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
+                              </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -771,6 +784,31 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Add new list"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jnewListButtonActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="jdelListButton">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Delete selected list"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jdelListButtonActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jListField">
+                      <Properties>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="80" green="80" id="gray" palette="1" red="80" type="palette"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Shopping list"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jListFieldFocusGained"/>
+                        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jListFieldFocusLost"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JSeparator" name="jSeparator1">
                     </Component>
                   </SubComponents>
                 </Container>

@@ -13,8 +13,8 @@ import static javax.swing.JOptionPane.showMessageDialog;
 public class Menu extends javax.swing.JFrame {
     
     User user; //Add value user which will set info about the logged in user (and if he is logged in)
-    Connection conn;
-    ArrayList<Item> items = new ArrayList<Item>();
+    Connection conn;    // Global variable for connecting to the database
+    ArrayList<Item> items = new ArrayList<Item>();  // The variable for items, so that items being currently displayed can easly be accessed by many func at once
     
     public Menu() { // Write here what to do with the window while being opened
         try{
@@ -93,6 +93,9 @@ public class Menu extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         jShoppingList = new javax.swing.JList<>();
         jnewListButton = new javax.swing.JButton();
+        jdelListButton = new javax.swing.JButton();
+        jListField = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
         jViewprofPanel = new javax.swing.JPanel();
         jLogoutButton = new javax.swing.JButton();
         jViewFavButton = new javax.swing.JButton();
@@ -551,6 +554,29 @@ public class Menu extends javax.swing.JFrame {
         jScrollPane4.setViewportView(jShoppingList);
 
         jnewListButton.setText("Add new list");
+        jnewListButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jnewListButtonActionPerformed(evt);
+            }
+        });
+
+        jdelListButton.setText("Delete selected list");
+        jdelListButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jdelListButtonActionPerformed(evt);
+            }
+        });
+
+        jListField.setForeground(java.awt.Color.gray);
+        jListField.setText("Shopping list");
+        jListField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jListFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jListFieldFocusLost(evt);
+            }
+        });
 
         javax.swing.GroupLayout jShoppingListPanelLayout = new javax.swing.GroupLayout(jShoppingListPanel);
         jShoppingListPanel.setLayout(jShoppingListPanelLayout);
@@ -559,12 +585,17 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(jShoppingListPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jShoppingListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jListField)
                     .addComponent(jScrollPane4)
                     .addGroup(jShoppingListPanelLayout.createSequentialGroup()
-                        .addComponent(jAccLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
+                        .addComponent(jAccLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbackListButton))
-                    .addComponent(jnewListButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jShoppingListPanelLayout.createSequentialGroup()
+                        .addComponent(jnewListButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jdelListButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         jShoppingListPanelLayout.setVerticalGroup(
@@ -575,9 +606,15 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(jAccLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
                     .addComponent(jbackListButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jnewListButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jListField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jShoppingListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jdelListButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jnewListButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -752,7 +789,7 @@ public class Menu extends javax.swing.JFrame {
                 items.add(item);
             }
             
-            DefaultListModel listModel = defaultListModel(items);
+            DefaultListModel listModel = defaultListModel_item(items);
             jResultList.setModel(listModel);
             
             CardLayout card = (CardLayout)jSearchPanel.getLayout();
@@ -825,7 +862,7 @@ public class Menu extends javax.swing.JFrame {
             if (!rs.isBeforeFirst() ) {    
                 showMessageDialog(null, "Username doesn't exist");
             } else{
-            
+                
             int id = 0;    
             String username = "";
             String mail = "";
@@ -841,6 +878,7 @@ public class Menu extends javax.swing.JFrame {
             }    
                 
             if (password.equals(pass)){
+                // Here it should be checked if the user is admin or not, and make new Admin, else make new Registered_user
                 this.user.logIn(id,username, mail, phone, password);
                 showMessageDialog(null, "Logged in successfully!");
                 displayUser();
@@ -964,6 +1002,7 @@ public class Menu extends javax.swing.JFrame {
     private void jViewListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jViewListButtonActionPerformed
         CardLayout card = (CardLayout)jProfilePagePanel.getLayout();
         card.show(jProfilePagePanel, "listcard");
+        showLists();
     }//GEN-LAST:event_jViewListButtonActionPerformed
 
     private void jSearchTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jSearchTextFieldFocusGained
@@ -1034,6 +1073,63 @@ public class Menu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jFavoritesListMouseClicked
 
+    private void jnewListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jnewListButtonActionPerformed
+        // Get the name for the shopping list
+        String name = jListField.getText();
+        
+        // Get the last id out of the access db
+        int id1 = 0;
+        try{
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM Shopping_list");
+            
+            while(rs.next()) {
+               if(rs.isLast()) {
+                    id1 = rs.getInt("ID");
+                }
+            }
+        }catch(Exception e){System.out.println(e);}
+        id1++;
+        
+        try {
+        String q = "INSERT INTO Shopping_list ([ID],[id_user],[list_name]) VALUES (?,?,?)";
+        PreparedStatement st = conn.prepareStatement(q);
+            st.setInt(1,id1);
+            st.setInt(2,user.getId());
+            st.setString(3,name);
+            st.executeUpdate();
+            showMessageDialog(null, "Successfully added list");
+            showLists();
+        } catch (SQLException ex) {Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);}
+    }//GEN-LAST:event_jnewListButtonActionPerformed
+
+    private void jListFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jListFieldFocusGained
+        if (jListField.getText().equals("Shopping list")) {
+            jListField.setText("");
+            jListField.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_jListFieldFocusGained
+
+    private void jListFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jListFieldFocusLost
+        if (jListField.getText().isEmpty()) {
+            jListField.setForeground(Color.GRAY);
+            jListField.setText("Shopping list");
+        }
+    }//GEN-LAST:event_jListFieldFocusLost
+
+    private void jdelListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jdelListButtonActionPerformed
+        // Not in function
+        int index = jFavoritesList.getSelectedIndex(); // It doesn't select anything because when you press the button the selection goes away
+        ShoppingList list = user.getLists().get(index);
+        try{
+            Statement stmt = conn.createStatement();
+            String del = "DELETE FROM Shopping_list WHERE id_user ='"+user.getId()+"' AND list_name = '"+list.getName()+"'";
+            stmt.executeUpdate(del);
+            showMessageDialog(null, "List deleted");
+        }catch(SQLException e){System.out.println("fail"); e.printStackTrace();}
+        showLists();
+    }//GEN-LAST:event_jdelListButtonActionPerformed
+
     private void itemDetail(Item item){
         jItemNameLabel.setText(item.getName());
         jItemDetailText.setText(item.toString());
@@ -1043,6 +1139,31 @@ public class Menu extends javax.swing.JFrame {
         jAccLabel.setText(user.getUsername());
         jAccLabel1.setText(user.getUsername());
         jAccTextArea.setText(user.toString());
+    }
+    
+    private void showLists(){
+        try {            
+            String q = "SELECT * FROM Shopping_list WHERE id_user = '" + user.getId() +"'";
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(q);  // Get the array of lists for the given user
+            
+            if (!rs.isBeforeFirst() ) {    // If it is empty, whoops
+                jShoppingList.setModel(new DefaultListModel());
+            } else{ // It should be made that the user attribute shopping lists would be changed on this screen
+                // As well as any time any list is manipulated, so that each shopping list could be individually viewed
+                
+                ArrayList<ShoppingList> lists = new ArrayList<ShoppingList>();
+                
+                while(rs.next()){
+                   lists.add(new ShoppingList(rs.getString("list_name"),rs.getInt("ID")));
+                }
+                user.setLists(lists);
+                DefaultListModel listModel = defaultListModel_list(lists);
+                jShoppingList.setModel(listModel);
+            }
+          } 
+        catch(SQLException e){System.out.println("fail"); e.printStackTrace();}
+        catch(Exception e){System.out.println(e);}
     }
     
     private void showFavs(){
@@ -1067,7 +1188,7 @@ public class Menu extends javax.swing.JFrame {
                         items.add(item);
                     }
                 }
-                DefaultListModel listModel = defaultListModel(items);
+                DefaultListModel listModel = defaultListModel_item(items);
                 jFavoritesList.setModel(listModel);
             }
           } 
@@ -1144,7 +1265,16 @@ public class Menu extends javax.swing.JFrame {
                 }  
     }
     
-    private DefaultListModel defaultListModel (ArrayList<Item> array){
+    private DefaultListModel defaultListModel_item (ArrayList<Item> array){
+        DefaultListModel listModel = new DefaultListModel();
+            for (int i = 0; i < array.size(); i++)
+            {
+                listModel.addElement(array.get(i).getId() + " - " + array.get(i).getName());
+            }
+        return listModel;
+    }
+    
+    private DefaultListModel defaultListModel_list (ArrayList<ShoppingList> array){
         DefaultListModel listModel = new DefaultListModel();
             for (int i = 0; i < array.size(); i++)
             {
@@ -1221,6 +1351,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JTextField jListField;
     private javax.swing.JButton jLoginButton;
     private javax.swing.JPanel jLoginPanel;
     private javax.swing.JButton jLogoutButton;
@@ -1248,6 +1379,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel jSearchPanel;
     private javax.swing.JPanel jSearchPanel_search;
     private javax.swing.JTextField jSearchTextField;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JList<String> jShoppingList;
     private javax.swing.JPanel jShoppingListPanel;
     private javax.swing.JTextField jUsernameField1;
@@ -1256,6 +1388,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel jViewprofPanel;
     private javax.swing.JButton jbackFavButton;
     private javax.swing.JButton jbackListButton;
+    private javax.swing.JButton jdelListButton;
     private javax.swing.JButton jnewListButton;
     // End of variables declaration//GEN-END:variables
 }
