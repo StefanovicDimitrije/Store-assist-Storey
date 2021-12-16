@@ -16,6 +16,9 @@ public class Menu extends javax.swing.JFrame {
     Connection conn;    // Global variable for connecting to the database
     ArrayList<Item> items = new ArrayList<Item>();  // The variable for items, so that items being currently displayed can easly be accessed by many func at once
     
+    int selected; // This is the variable for deleting the selected shopping list in the jlist
+                // This is only temporary as this should be imporved
+    
     public Menu() { // Write here what to do with the window while being opened
         try{
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
@@ -550,6 +553,11 @@ public class Menu extends javax.swing.JFrame {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
+        });
+        jShoppingList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jShoppingListMouseClicked(evt);
+            }
         });
         jScrollPane4.setViewportView(jShoppingList);
 
@@ -1118,8 +1126,9 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jListFieldFocusLost
 
     private void jdelListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jdelListButtonActionPerformed
-        // Not in function
-        int index = jFavoritesList.getSelectedIndex(); // It doesn't select anything because when you press the button the selection goes away
+        // This function could be improved
+        //int index = jFavoritesList.getSelectedIndex(); // It doesn't select anything because when you press the button the selection goes away
+        int index = selected; // It takes the last selected item in the list of shopping lists (Global var)s
         ShoppingList list = user.getLists().get(index);
         try{
             Statement stmt = conn.createStatement();
@@ -1129,6 +1138,10 @@ public class Menu extends javax.swing.JFrame {
         }catch(SQLException e){System.out.println("fail"); e.printStackTrace();}
         showLists();
     }//GEN-LAST:event_jdelListButtonActionPerformed
+
+    private void jShoppingListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jShoppingListMouseClicked
+        JList list = (JList)evt.getSource(); selected = list.locationToIndex(evt.getPoint());
+    }//GEN-LAST:event_jShoppingListMouseClicked
 
     private void itemDetail(Item item){
         jItemNameLabel.setText(item.getName());
