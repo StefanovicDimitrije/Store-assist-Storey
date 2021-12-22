@@ -1066,10 +1066,7 @@ public class Menu extends javax.swing.JFrame {
                           CardLayout card = (CardLayout)jContentPanel.getLayout();
                           card.show(jContentPanel, "profilecard");
                     }});
-            
-            //jBackToSearchButton1.setVisible(false);
-            // Back button invis (za sad)
-            
+           
             ActionListener[] listeners1 = jFavoriteButton.getActionListeners();
             if (listeners1.length != 0){
                 for(ActionListener al:listeners1){
@@ -1210,6 +1207,9 @@ public class Menu extends javax.swing.JFrame {
     }
     
     private void favoriteButton(Item item){
+        
+        // Remove action listener
+        
         boolean favoriteExists = false;
             
         if(user.isLogged()){
